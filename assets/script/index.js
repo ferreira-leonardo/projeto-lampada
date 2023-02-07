@@ -1,6 +1,5 @@
 let lamp = document.getElementById('lampada');
-let onLamp = document.getElementById('btnligar');
-let offLamp = document.getElementById('btndesligar');
+let btnOnOff = document.getElementById('btnligarDesligar');
 let btnrestore = document.getElementById('btnrestaurar');
 
 let checkLamp = 1;
@@ -25,12 +24,21 @@ const breakLamp = () => {
 const restoreLamp = () => {
     lamp.src='assets/img/desligada.jpg';
     checkLamp = 1;
+    btnOnOff.value = 'Ligar'
+}
+
+const turnOnOffLamp = () => {
+    if(btnOnOff.value == 'Ligar' && checkLamp == 1){
+        turnOnLamp()
+        btnOnOff.value = 'Desligar'
+    } else if(checkLamp == 1){
+        turnOofLamp()
+        btnOnOff.value = 'Ligar'
+    }
 }
 
 btnrestore.addEventListener('click', restoreLamp);
 
-btnligar.addEventListener('click', turnOnLamp);
-
-btndesligar.addEventListener('click', turnOofLamp);
+btnOnOff.addEventListener('click', turnOnOffLamp);
 
 lamp.addEventListener('click', breakLamp);
